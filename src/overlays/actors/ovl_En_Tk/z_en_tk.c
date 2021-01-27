@@ -5,7 +5,6 @@
  */
 
 #include "z_en_tk.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define FLAGS 0x00000009
 
@@ -21,6 +20,14 @@ void EnTk_Rest(EnTk* this, GlobalContext* globalCtx);
 void EnTk_Walk(EnTk* this, GlobalContext* globalCtx);
 void EnTk_Dig(EnTk* this, GlobalContext* globalCtx);
 
+extern UNK_TYPE D_04051DB0;
+extern UNK_TYPE D_040521B0;
+extern UNK_TYPE D_040525B0;
+extern UNK_TYPE D_040529B0;
+extern UNK_TYPE D_04052DB0;
+extern UNK_TYPE D_040531B0;
+extern UNK_TYPE D_040535B0;
+extern UNK_TYPE D_040539B0;
 extern AnimationHeader D_06001144;
 extern AnimationHeader D_06001FA8;
 extern AnimationHeader D_06002F84;
@@ -89,8 +96,8 @@ void EnTkEff_Update(EnTk* this) {
 }
 
 void EnTkEff_Draw(EnTk* this, GlobalContext* globalCtx) {
-    static UNK_PTR dustImages[] = {
-        &gDust8Tex, &gDust7Tex, &gDust6Tex, &gDust5Tex, &gDust4Tex, &gDust3Tex, &gDust2Tex, &gDust1Tex,
+    static UNK_PTR images[] = {
+        &D_040539B0, &D_040535B0, &D_040531B0, &D_04052DB0, &D_040529B0, &D_040525B0, &D_040521B0, &D_04051DB0,
     };
 
     EnTkEff* eff = this->eff;
@@ -126,8 +133,8 @@ void EnTkEff_Draw(EnTk* this, GlobalContext* globalCtx) {
             gSPMatrix(POLY_XLU_DISP++, Matrix_NewMtx(globalCtx->state.gfxCtx, "../z_en_tk_eff.c", 140),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
-            imageIdx = eff->timeLeft * ((f32)ARRAY_COUNT(dustImages) / eff->timeTotal);
-            gSPSegment(POLY_XLU_DISP++, 0x08, SEGMENTED_TO_VIRTUAL(dustImages[imageIdx]));
+            imageIdx = eff->timeLeft * ((f32)ARRAY_COUNT(images) / eff->timeTotal);
+            gSPSegment(POLY_XLU_DISP++, 0x08, SEGMENTED_TO_VIRTUAL(images[imageIdx]));
 
             gSPDisplayList(POLY_XLU_DISP++, D_0600BCA0);
         }

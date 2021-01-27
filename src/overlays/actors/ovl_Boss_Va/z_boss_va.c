@@ -1,5 +1,4 @@
 #include "z_boss_va.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define FLAGS 0x00000035
 
@@ -10,6 +9,7 @@ void BossVa_Destroy(Actor* thisx, GlobalContext* globalCtx);
 void BossVa_Update(Actor* thisx, GlobalContext* globalCtx);
 void BossVa_Draw(Actor* thisx, GlobalContext* globalCtx);
 
+extern UNK_TYPE D_04055DB0;
 extern UNK_TYPE D_06000024;
 extern UNK_TYPE D_06000FA0;
 extern UNK_TYPE D_06001230;

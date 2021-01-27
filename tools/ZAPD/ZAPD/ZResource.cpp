@@ -12,14 +12,12 @@ ZResource::ZResource()
 	rawData = vector<uint8_t>();
 	rawDataIndex = 0;
 	outputDeclaration = true;
+	arrayCnt = -1;
 }
 
 void ZResource::ParseXML(tinyxml2::XMLElement* reader)
 {
-	if (reader->Attribute("Name") != nullptr)
-		name = reader->Attribute("Name");
-	else
-		name = "";
+	name = reader->Attribute("Name");
 
 	if (reader->Attribute("OutName") != nullptr)
 		outName = reader->Attribute("OutName");
@@ -52,11 +50,6 @@ void ZResource::SetName(string nName)
 }
 
 bool ZResource::IsExternalResource()
-{
-	return false;
-}
-
-bool ZResource::DoesSupportArray()
 {
 	return false;
 }
@@ -101,18 +94,9 @@ string ZResource::GetSourceOutputHeader(const std::string& prefix)
 	return "";
 }
 
-void ZResource::ParseRawData()
-{
-}
-
 void ZResource::GenerateHLIntermediette(HLFileIntermediette& hlFile)
 {
 
-}
-
-std::string ZResource::GetSourceTypeName()
-{
-	return "";
 }
 
 ZResourceType ZResource::GetResourceType()

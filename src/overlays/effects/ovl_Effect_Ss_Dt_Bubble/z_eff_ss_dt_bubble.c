@@ -5,7 +5,6 @@
  */
 
 #include "z_eff_ss_dt_bubble.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define rPrimColorR regs[0]
 #define rPrimColorG regs[1]
@@ -31,13 +30,17 @@ EffectSsInit Effect_Ss_Dt_Bubble_InitVars = {
     EffectSsDtBubble_Init,
 };
 
+extern void* D_04055DB0;
+extern void* D_04055EB0;
+extern Gfx D_0401A160[];
+
 u32 EffectSsDtBubble_Init(GlobalContext* globalCtx, u32 index, EffectSs* this, void* initParamsx) {
     EffectSsDtBubbleInitParams* initParams = (EffectSsDtBubbleInitParams*)initParamsx;
 
     // @bug Rand_ZeroOne in the macro means a random number is generated for both parts of the macro.
     // In the base game this works out because both addresses are segment 4, but it may break if
     // the addresses were changed to refer to different segments
-    this->gfx = SEGMENTED_TO_VIRTUAL(Rand_ZeroOne() < 0.5f ? &gEffBubble1Tex : &gEffBubble2Tex);
+    this->gfx = SEGMENTED_TO_VIRTUAL(Rand_ZeroOne() < 0.5f ? &D_04055DB0 : &D_04055EB0);
     this->pos = initParams->pos;
     this->velocity = initParams->velocity;
     this->accel = initParams->accel;
@@ -89,7 +92,7 @@ void EffectSsDtBubble_Draw(GlobalContext* globalCtx, u32 index, EffectSs* this) 
     gDPSetEnvColor(POLY_XLU_DISP++, this->rEnvColorR, this->rEnvColorG, this->rEnvColorB,
                    (this->rEnvColorA * this->life) / this->rLifespan);
     gSPSegment(POLY_XLU_DISP++, 0x08, this->gfx);
-    gSPDisplayList(POLY_XLU_DISP++, SEGMENTED_TO_VIRTUAL(gEffBubbleDL));
+    gSPDisplayList(POLY_XLU_DISP++, SEGMENTED_TO_VIRTUAL(D_0401A160));
 
     CLOSE_DISPS(gfxCtx, "../z_eff_ss_dt_bubble.c", 236);
 }

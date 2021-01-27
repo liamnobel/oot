@@ -28,6 +28,8 @@ void ZVector::ParseXML(tinyxml2::XMLElement* reader)
 {
 	ZResource::ParseXML(reader);
 
+	name = reader->Attribute("Name");
+
 	std::string type = reader->Attribute("Type");
 	this->scalarType = ZScalar::MapOutputTypeToScalarType(type);
 
@@ -40,9 +42,7 @@ void ZVector::ParseRawData()
 	int currentRawDataIndex = this->rawDataIndex;
 
 	scalars.clear();
-
-	for (int i = 0; i < this->dimensions; i++) 
-	{
+	for (int i = 0; i < this->dimensions; i++) {
 		ZScalar* scalar = new ZScalar(this->scalarType);
 		scalar->rawDataIndex = currentRawDataIndex;
 		scalar->rawData = this->rawData;
@@ -62,11 +62,6 @@ int ZVector::GetRawDataSize()
 	for (int i = 0; i < this->scalars.size(); i++)
 		size += this->scalars[i]->GetRawDataSize();
 	return size;
-}
-
-bool ZVector::DoesSupportArray()
-{
-	return true;
 }
 
 std::string ZVector::GetSourceTypeName()
@@ -99,7 +94,7 @@ std::string ZVector::GetSourceValue()
 	std::vector<std::string> strings = std::vector<std::string>();
 	for (int i = 0; i < this->scalars.size(); i++)
 		strings.push_back(scalars[i]->GetSourceValue());
-	return "{ " + StringHelper::Implode(strings, ", ") + " }";
+	return StringHelper::Implode(strings, ", ");
 }
 
 std::string ZVector::GetSourceOutputCode(const std::string& prefix)

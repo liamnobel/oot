@@ -5,7 +5,6 @@
  */
 
 #include "z_eff_ss_bomb.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define rScale regs[0]
 #define rTexIdx regs[1]
@@ -19,13 +18,15 @@ EffectSsInit Effect_Ss_Bomb_InitVars = {
     EffectSsBomb_Init,
 };
 
+extern Gfx D_0400BF80[];
+
 u32 EffectSsBomb_Init(GlobalContext* globalCtx, u32 index, EffectSs* this, void* initParamsx) {
     EffectSsBombInitParams* initParams = (EffectSsBombInitParams*)initParamsx;
 
     Math_Vec3f_Copy(&this->pos, &initParams->pos);
     Math_Vec3f_Copy(&this->velocity, &initParams->velocity);
     Math_Vec3f_Copy(&this->accel, &initParams->accel);
-    this->gfx = SEGMENTED_TO_VIRTUAL(gEffBombExplosion1DL);
+    this->gfx = SEGMENTED_TO_VIRTUAL(D_0400BF80);
     this->life = 20;
     this->draw = EffectSsBomb_Draw;
     this->update = EffectSsBomb_Update;
@@ -35,11 +36,11 @@ u32 EffectSsBomb_Init(GlobalContext* globalCtx, u32 index, EffectSs* this, void*
     return 1;
 }
 
-static UNK_PTR sTextures[] = {
-    gEffBombExplosion1Tex,
-    gEffBombExplosion2Tex,
-    gEffBombExplosion3Tex,
-    gEffBombExplosion4Tex,
+static void* sTextures[] = {
+    0x04007F80,
+    0x04008780,
+    0x04008F80,
+    0x04009780,
 };
 
 void EffectSsBomb_Draw(GlobalContext* globalCtx, u32 index, EffectSs* this) {

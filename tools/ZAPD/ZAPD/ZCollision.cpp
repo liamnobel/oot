@@ -167,11 +167,6 @@ ZCollisionHeader::~ZCollisionHeader()
 		delete waterBox;
 }
 
-ZResourceType ZCollisionHeader::GetResourceType()
-{
-	return ZResourceType::CollisionHeader;
-}
-
 ZCollisionHeader* ZCollisionHeader::ExtractFromXML(tinyxml2::XMLElement* reader, vector<uint8_t> nRawData, int rawDataIndex)
 {
 	ZCollisionHeader* col = new ZCollisionHeader();

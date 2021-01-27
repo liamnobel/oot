@@ -5,7 +5,6 @@
  */
 
 #include "z_eff_ss_k_fire.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define rAlpha regs[0]
 #define rScroll regs[2]
@@ -22,6 +21,8 @@ EffectSsInit Effect_Ss_K_Fire_InitVars = {
     EFFECT_SS_K_FIRE,
     EffectSsKFire_Init,
 };
+
+extern Gfx D_0404D4E0[];
 
 u32 EffectSsKFire_Init(GlobalContext* globalCtx, u32 index, EffectSs* this, void* initParamsx) {
     EffectSsKFireInitParams* initParams = (EffectSsKFireInitParams*)initParamsx;
@@ -77,7 +78,7 @@ void EffectSsKFire_Draw(GlobalContext* globalCtx, u32 index, EffectSs* this) {
 
     gSPMatrix(POLY_XLU_DISP++, Matrix_NewMtx(globalCtx->state.gfxCtx, "../z_eff_k_fire.c", 215),
               G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
-    gSPDisplayList(POLY_XLU_DISP++, gEffFire1DL);
+    gSPDisplayList(POLY_XLU_DISP++, D_0404D4E0);
 
     CLOSE_DISPS(gfxCtx, "../z_eff_k_fire.c", 220);
 }

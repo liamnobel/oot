@@ -1,5 +1,4 @@
 #include "z_en_fd_fire.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define FLAGS 0x00000015
 
@@ -13,6 +12,8 @@ void EnFdFire_Disappear(EnFdFire* this, GlobalContext* globalCtx);
 void func_80A0E70C(EnFdFire* this, GlobalContext* globalCtx);
 void EnFdFire_DanceTowardsPlayer(EnFdFire* this, GlobalContext* globalCtx);
 void EnFdFire_WaitToDie(EnFdFire* this, GlobalContext* globalCtx);
+
+extern Gfx D_0404D4E0[];
 
 const ActorInit En_Fd_Fire_InitVars = {
     ACTOR_EN_FD_FIRE,
@@ -282,7 +283,7 @@ void EnFdFire_Draw(Actor* thisx, GlobalContext* globalCtx) {
                    envColors[((this->actor.params & 0x8000) >> 0xF)].b,
                    envColors[((this->actor.params & 0x8000) >> 0xF)].a);
     gDPPipeSync(POLY_XLU_DISP++);
-    gSPDisplayList(POLY_XLU_DISP++, &gEffFire1DL);
+    gSPDisplayList(POLY_XLU_DISP++, &D_0404D4E0);
 
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_fd_fire.c", 672);
 }

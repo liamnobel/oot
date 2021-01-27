@@ -1,6 +1,5 @@
 #include "global.h"
 #include "vt.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 MapData* gMapData;
 
@@ -340,7 +339,7 @@ void Minimap_DrawCompassIcons(GlobalContext* globalCtx) {
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
         gDPSetPrimColor(OVERLAY_DISP++, 0, 0, 200, 255, 0, 255);
-        gSPDisplayList(OVERLAY_DISP++, gCompassArrowDL);
+        gSPDisplayList(OVERLAY_DISP++, D_0400C820);
 
         tempX = sPlayerInitialPosX;
         tempZ = sPlayerInitialPosZ;
@@ -354,7 +353,7 @@ void Minimap_DrawCompassIcons(GlobalContext* globalCtx) {
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
         gDPSetPrimColor(OVERLAY_DISP++, 0, 0xFF, 200, 0, 0, 255);
-        gSPDisplayList(OVERLAY_DISP++, gCompassArrowDL);
+        gSPDisplayList(OVERLAY_DISP++, D_0400C820);
     }
 
     CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_map_exp.c", 607);

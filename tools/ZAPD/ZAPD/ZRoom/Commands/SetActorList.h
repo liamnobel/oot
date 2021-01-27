@@ -32,7 +32,6 @@ public:
 	virtual std::string GenerateExterns();
 
 private:
-	int GetActorListArraySize();
 	int numActors;
 	std::vector<ActorSpawnEntry*> actors;
 	uint32_t segmentOffset;

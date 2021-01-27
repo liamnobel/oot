@@ -26,17 +26,6 @@ public:
 
 	static void CreateDirectory(const std::string& path)
 	{
-		std::string curPath = "";
-		std::vector<std::string> split = StringHelper::Split(path, "/");
-
-		for (std::string s : split)
-		{
-			curPath += s + "/";
-
-			if (!Exists(curPath))
-				fs::create_directory(curPath);
-		}
-
-		//fs::create_directory(path);
+		fs::create_directory(path);
 	}
 };

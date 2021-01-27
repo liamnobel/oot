@@ -17,15 +17,14 @@ public:
 	ZVector();
 
 	void ParseXML(tinyxml2::XMLElement* reader);
-	std::string GetSourceTypeName() override;
+	std::string GetSourceTypeName();
 	std::string GetSourceValue();
 	std::string GetSourceOutputCode(const std::string& prefix);
-	void ParseRawData() override;
 	int GetRawDataSize();
-	bool DoesSupportArray() override;
 	ZResourceType GetResourceType();
 
 	static ZVector* ExtractFromXML(tinyxml2::XMLElement* reader, const std::vector<uint8_t>& nRawData, const int rawDataIndex, const std::string& nRelPath);
 
 protected:
+	void ParseRawData();
 };

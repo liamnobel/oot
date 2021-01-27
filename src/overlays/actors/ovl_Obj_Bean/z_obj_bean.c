@@ -5,7 +5,6 @@
  */
 
 #include "z_obj_bean.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define FLAGS 0x00400000
 

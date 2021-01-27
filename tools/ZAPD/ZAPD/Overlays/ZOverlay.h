@@ -55,8 +55,7 @@ public:
 	ZOverlay(std::string nName);
 	~ZOverlay();
 	static ZOverlay* FromBuild(std::string buildPath, std::string cfgFolderPath);
-	std::string GetSourceOutputCode(const std::string& prefix) override;
-	ZResourceType GetResourceType() override;
+	std::string GetSourceOutputCode(const std::string& prefix);
 
 private:
 	std::vector<RelocationEntry*> entries;

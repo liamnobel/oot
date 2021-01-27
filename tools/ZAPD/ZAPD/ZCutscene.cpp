@@ -181,11 +181,6 @@ CutsceneCommands ZCutscene::GetCommandFromID(int id)
 	return CutsceneCommands::Error;
 }
 
-ZResourceType ZCutscene::GetResourceType()
-{
-	return ZResourceType::Cutscene;
-}
-
 CutsceneCommand::CutsceneCommand(const vector<uint8_t>& rawData, int rawDataIndex)
 {
 

@@ -9,7 +9,6 @@
 #include "overlays/actors/ovl_En_Syateki_Itm/z_en_syateki_itm.h"
 #include "overlays/effects/ovl_Effect_Ss_Kakera/z_eff_ss_kakera.h"
 #include "overlays/effects/ovl_Effect_Ss_HitMark/z_eff_ss_hitmark.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define FLAGS 0x00000030
 
@@ -467,8 +466,7 @@ void EnGSwitch_DrawPot(Actor* thisx, GlobalContext* globalCtx) {
     }
 }
 
-static UNK_PTR sRupeeTex[] = { gRupeeGreenTex, gRupeeBlueTex,   gRupeeRedTex,
-                               gRupeePinkTex,  gRupeeOrangeTex, gRupeeSilverTex };
+static u8* sRupeeTex[] = { 0x04042140, 0x04042160, 0x04042180, 0x040421C0, 0x040421A0, 0x040421E0 };
 
 void EnGSwitch_DrawRupee(Actor* thisx, GlobalContext* globalCtx) {
     s32 pad;
@@ -482,7 +480,7 @@ void EnGSwitch_DrawRupee(Actor* thisx, GlobalContext* globalCtx) {
         gSPMatrix(POLY_OPA_DISP++, Matrix_NewMtx(globalCtx->state.gfxCtx, "../z_en_g_switch.c", 957),
                   G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
         gSPSegment(POLY_OPA_DISP++, 0x08, SEGMENTED_TO_VIRTUAL(sRupeeTex[this->colorIdx]));
-        gSPDisplayList(POLY_OPA_DISP++, gRupeeDL);
+        gSPDisplayList(POLY_OPA_DISP++, D_04042440);
         CLOSE_DISPS(globalCtx->state.gfxCtx, "../z_en_g_switch.c", 961);
     }
     if (this->type == ENGSWITCH_TARGET_RUPEE) {
@@ -566,7 +564,7 @@ void EnGSwitch_DrawEffects(EnGSwitch* this, GlobalContext* globalCtx) {
             gSPMatrix(POLY_OPA_DISP++, Matrix_NewMtx(globalCtx->state.gfxCtx, "../z_en_g_switch.c", 1088),
                       G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
             gSPSegment(POLY_OPA_DISP++, 0x08, SEGMENTED_TO_VIRTUAL(sRupeeTex[effect->colorIdx]));
-            gSPDisplayList(POLY_OPA_DISP++, gRupeeDL);
+            gSPDisplayList(POLY_OPA_DISP++, D_04042440);
         }
     }
     CLOSE_DISPS(gfxCtx, "../z_en_g_switch.c", 1095);

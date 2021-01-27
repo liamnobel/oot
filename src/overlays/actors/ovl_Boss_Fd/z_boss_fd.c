@@ -1,5 +1,4 @@
 #include "z_boss_fd.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define FLAGS 0x00000035
 

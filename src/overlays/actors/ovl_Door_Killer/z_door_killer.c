@@ -1,5 +1,4 @@
 #include "z_door_killer.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define FLAGS 0x00000010
 

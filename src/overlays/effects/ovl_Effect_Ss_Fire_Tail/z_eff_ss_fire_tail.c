@@ -5,7 +5,6 @@
  */
 
 #include "z_eff_ss_fire_tail.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define rScale regs[0]
 #define rLifespan regs[1]
@@ -29,6 +28,9 @@ EffectSsInit Effect_Ss_Fire_Tail_InitVars = {
     EFFECT_SS_FIRE_TAIL,
     EffectSsFireTail_Init,
 };
+
+extern Gfx D_0404D5A0[];
+extern Gfx D_0404D4E0[];
 
 u32 EffectSsFireTail_Init(GlobalContext* globalCtx, u32 index, EffectSs* this, void* initParamsx) {
     EffectSsFireTailInitParams* initParams = (EffectSsFireTailInitParams*)initParamsx;
@@ -127,9 +129,9 @@ void EffectSsFireTail_Draw(GlobalContext* globalCtx, u32 index, EffectSs* this) 
                                 (globalCtx->state.frames * -0x14) & 0x1FF, 32, 128));
 
     if (this->rType != 0) {
-        gSPDisplayList(POLY_XLU_DISP++, gEffFire2DL);
+        gSPDisplayList(POLY_XLU_DISP++, D_0404D5A0);
     } else {
-        gSPDisplayList(POLY_XLU_DISP++, gEffFire1DL);
+        gSPDisplayList(POLY_XLU_DISP++, D_0404D4E0);
     }
 
     CLOSE_DISPS(gfxCtx, "../z_eff_fire_tail.c", 273);

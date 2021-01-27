@@ -5,7 +5,6 @@
  */
 
 #include "z_en_elf.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define FLAGS 0x02000030
 
@@ -90,6 +89,9 @@ static FairyColorFlags sColorFlags[] = {
     { 0, 0, 0 }, { 1, 0, 0 }, { 1, 2, 0 }, { 1, 0, 2 }, { 0, 1, 0 }, { 2, 1, 0 }, { 0, 1, 2 },
     { 0, 0, 1 }, { 2, 0, 1 }, { 0, 2, 1 }, { 1, 1, 0 }, { 1, 0, 1 }, { 0, 1, 1 },
 };
+
+extern SkeletonHeader D_04016A48;
+extern AnimationHeader D_04014BA4;
 
 void EnElf_SetupAction(EnElf* this, EnElfActionFunc actionFunc) {
     this->actionFunc = actionFunc;
@@ -321,7 +323,7 @@ void EnElf_Init(Actor* thisx, GlobalContext* globalCtx) {
     s32 i;
 
     Actor_ProcessInitChain(thisx, sInitChain);
-    SkelAnime_Init(globalCtx, &this->skelAnime, &gFairySkel, &gFairyAnim, this->jointTable, this->morphTable, 15);
+    SkelAnime_Init(globalCtx, &this->skelAnime, &D_04016A48, &D_04014BA4, this->jointTable, this->morphTable, 15);
     ActorShape_Init(&thisx->shape, 0.0f, NULL, 15.0f);
     thisx->shape.shadowAlpha = 0xFF;
 

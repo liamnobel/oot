@@ -31,12 +31,13 @@ void ZScalar::ParseXML(tinyxml2::XMLElement* reader)
 {
 	ZResource::ParseXML(reader);
 
+	name = reader->Attribute("Name");
+
 	std::string type = reader->Attribute("Type");
 	scalarType = ZScalar::MapOutputTypeToScalarType(type);
 }
 
-ZScalarType ZScalar::MapOutputTypeToScalarType(const std::string& type) 
-{
+ZScalarType ZScalar::MapOutputTypeToScalarType(const std::string& type) {
 	if (type == "s8")
 	{
 		return ZSCALAR_S8;
@@ -227,9 +228,4 @@ std::string ZScalar::GetSourceOutputCode(const std::string& prefix)
 ZResourceType ZScalar::GetResourceType()
 {
 	return ZResourceType::Scalar;
-}
-
-bool ZScalar::DoesSupportArray()
-{
-	return true;
 }

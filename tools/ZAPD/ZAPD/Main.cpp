@@ -7,7 +7,6 @@
 #include "Overlays/ZOverlay.h"
 #include "Path.h"
 #include "File.h"
-#include "Directory.h"
 #include "Globals.h"
 
 #if !defined(_MSC_VER) && !defined(__CYGWIN__)
@@ -181,7 +180,9 @@ int NewMain(int argc, char* argv[])
 	}
 
 	if (Globals::Instance->verbosity >= VERBOSITY_INFO)
+	{
 		printf("ZAPD: Zelda Asset Processor For Decomp\n");
+	}
 
 	if (fileMode == ZFileMode::Build || fileMode == ZFileMode::Extract || fileMode == ZFileMode::BuildSourceFile)
 	{
@@ -238,7 +239,7 @@ bool Parse(const std::string& xmlFilePath, const std::string& basePath, const st
 	{
 		if (string(child->Name()) == "File")
 		{
-			ZFile* file = new ZFile(fileMode, child, basePath, outPath, "", false);
+			ZFile* file = new ZFile(fileMode, child, basePath, outPath, false);
 			Globals::Instance->files.push_back(file);
 		}
 	}

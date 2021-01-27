@@ -5,7 +5,6 @@
  */
 
 #include "z_en_anubice_fire.h"
-#include "objects/gameplay_keep/gameplay_keep.h"
 
 #define FLAGS 0x00000010
 
